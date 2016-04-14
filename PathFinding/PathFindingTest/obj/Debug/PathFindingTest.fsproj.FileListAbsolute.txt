@@ -10,3 +10,15 @@ C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFindingTes
 C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.fsprojResolveAssemblyReference.cache
 C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.exe
 C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.pdb
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.exe.config
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.XML
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.exe
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.pdb
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\FSharp.Core.dll
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFinding.dll
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFinding.pdb
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFinding.xml
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\FSharp.Core.xml
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.fsprojResolveAssemblyReference.cache
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.exe
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.pdb

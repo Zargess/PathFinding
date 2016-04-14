@@ -1,6 +1,8 @@
 ﻿namespace PathFinding
 
 module Dijkstra =
+    open FibonacciHeap
+
     let getPath (x : Node) =
         let rec helper (y : Node) (pathSoFar : Position list) : Position list =
             match y.prev with
@@ -30,6 +32,7 @@ module Dijkstra =
                 let Q' = (List.map (updateNeighbour hd) neighbours)@rest
                 findShortestPathToTarget graph target Q'
 
-    let shortestPathToTarget (graph : Graph) (source : Position) (target : Position) : Position list =
-        let nodes = { pos= source; prev = None; dist = 0.0 }::(List.filter (fun (x : Node) -> x.pos <> source) graph.nodes)
-        findShortestPathToTarget graph target nodes
+    let search (edges : Edge list) (source : Position) (target : Position) : Position list =
+//        let nodes = { pos= source; prev = None; dist = 0.0 }::(List.filter (fun (x : Node) -> x.pos <> source) graph.nodes)
+//        findShortestPathToTarget graph target nodes
+        []

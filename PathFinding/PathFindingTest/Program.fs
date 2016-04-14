@@ -8,7 +8,7 @@ open System
 let main argv = 
     let file = "C:\Users\Marcus\SkyDrive\Dokumenter\\test.txt"
     let graph = Graphing.constructGraphFromFile file
-    let path = Dijkstra.shortestPathToTarget graph (1,1) (39,5)
+    let path = Dijkstra.search graph.edges (1,1) (39,5)
     printfn "%A" path
     Console.ReadLine() |> ignore
 

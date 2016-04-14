@@ -1,4 +1,4 @@
 ﻿namespace PathFinding
 
 module Dijkstra = 
-    val shortestPathToTarget : Graph -> Position -> Position -> Position list
+    val search : Edge list -> Position -> Position -> Position list

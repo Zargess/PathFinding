@@ -5,3 +5,11 @@ C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFinding\bi
 C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFinding\bin\Debug\FSharp.Core.xml
 C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFinding\obj\Debug\PathFinding.dll
 C:\Users\Marcus\documents\visual studio 2015\Projects\PathFinding\PathFinding\obj\Debug\PathFinding.pdb
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\PathFinding.XML
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\PathFinding.dll
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\PathFinding.pdb
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\FibonacciHeap.dll
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\FSharp.Core.dll
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\FSharp.Core.xml
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.dll
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.pdb
