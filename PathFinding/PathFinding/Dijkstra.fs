@@ -32,7 +32,11 @@ module Dijkstra =
                 let Q' = (List.map (updateNeighbour hd) neighbours)@rest
                 findShortestPathToTarget graph target Q'
 
+    //let rec searchForPath (edges : Edge list) (target : Position) (Q : FibonacciHeap<FibonacciHeapNode<Node>>) 
+
     let search (edges : Edge list) (source : Position) (target : Position) : Position list =
 //        let nodes = { pos= source; prev = None; dist = 0.0 }::(List.filter (fun (x : Node) -> x.pos <> source) graph.nodes)
 //        findShortestPathToTarget graph target nodes
+        let n = new FibonacciHeapNode<Node>({pos = source; prev = None; dist = 0.0}, 0.0);
+        n.
         []
