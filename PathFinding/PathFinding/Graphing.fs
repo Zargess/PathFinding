@@ -2,6 +2,13 @@
 
 module Graphing =
     open System.IO
+
+    let getPath (x : Node) =
+        let rec helper (y : Node) (pathSoFar : Position list) : Position list =
+            match y.prev with
+            | Some(z) -> helper z (y.pos::pathSoFar)
+            | None -> pathSoFar
+        helper x []
     
     let readAllLines (path : string) = File.ReadAllLines(path) |> List.ofArray    
     
@@ -33,10 +40,10 @@ module Graphing =
         readAllLines path
         |> constructNodesFromMap
 
-    let rec constructGraph (adjacent : Node -> Node -> bool) (node : Node) (nodes : Node list) (currentVisiting : Node list) (vertices : Position list) (edges : Edge list) : Graph =
+    let rec constructGraph (adjacent : Node -> Node -> bool) (node : Node) (nodes : Node list) (currentVisiting : Node list) (vertices : Position list) (edges : Map<Position, Position list>) : Graph =
         let pos = node.pos
         let children = adjacentNodes adjacent node nodes
-        let newEdges = (List.map (fun (x : Node) -> (pos, x.pos)) children)@edges
+        let newEdges = edges.Add (pos, (List.map (fun (x : Node) -> x.pos) children))
         let newVertices = pos::vertices
         let notInVertices = List.filter (fun (p : Node) -> not(List.contains p.pos vertices)) children
         match notInVertices with
@@ -50,10 +57,10 @@ module Graphing =
     let constructGraphFromMap (map : string list) (adjacent : Node -> Node -> bool) : Graph =
         let nodes = constructNodesFromMap map
         let initialNode = List.head nodes
-        constructGraph adjacent initialNode nodes [] [] []
+        constructGraph adjacent initialNode nodes [] [] Map.empty
 
     let constructGraphFromFile (path : string) (adjacent : Node -> Node -> bool) : Graph =
         let nodes = constructNodesFromFile path
         let initialNode = List.head nodes
-        constructGraph adjacent initialNode nodes [] [] []
+        constructGraph adjacent initialNode nodes [] [] Map.empty
         

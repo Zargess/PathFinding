@@ -3,24 +3,13 @@
 module Dijkstra =
     open FibonacciHeap
 
-    let getPath (x : Node) =
-        let rec helper (y : Node) (pathSoFar : Position list) : Position list =
-            match y.prev with
-            | Some(z) -> helper z (y.pos::pathSoFar)
-            | None -> pathSoFar
-        helper x []
-
-    let getRemainingNeighbours (edges : Edge list) (n : Node) (nodes : Node list) : Node list =
-        let allNeighbours = List.filter (fun (x,y) -> x = n.pos) edges
-        List.filter (fun n -> List.exists (fun (x,y) -> y = n.pos) allNeighbours) nodes
-
-    let rec updateNeighbours (n : Node) (neighbours : Edge list) (heap : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (heuristic : Position -> Position -> float) : FibonacciHeap<Node> =
+    let rec updateNeighbours (n : Node) (neighbours : Position list) (heap : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (heuristic : Position -> Position -> float) : FibonacciHeap<Node> =
         match neighbours with
         | [] -> heap
-        | (x, y)::cdr ->
+        | car::cdr ->
             let node = fibNodes.[n.pos]
-            let neighbour = fibNodes.[y]
-            let alt = node.Key + (heuristic n.pos y)
+            let neighbour = fibNodes.[car]
+            let alt = node.Key + (heuristic n.pos car)
             if alt < neighbour.Key
             then
                 neighbour.Data <- {neighbour.Data with prev = Some(n)} 
@@ -29,36 +18,20 @@ module Dijkstra =
             else
                 updateNeighbours n cdr heap fibNodes heuristic
 
-    let rec searchForPath (edges : Edge list) (target : Position) (Q : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (visitedNodes : Node list) (heuristic : Position -> Position -> float) : Position list = 
+    let rec searchForPath (edges : Map<Position, Position list>) (target : Position) (Q : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (visitedNodes : Position list) (heuristic : Position -> Position -> float) : Position list = 
         if Q.IsEmpty()
-        then getPath (List.find (fun x -> x.pos = target) visitedNodes)
+        then []
         else
             let min = Q.RemoveMin().Data
             match min with
-            | x when min.pos = target -> getPath min
+            | x when min.pos = target -> Graphing.getPath min
             | _ ->
-                let neighbours =
-                    List.filter (fun (x,y) -> x = min.pos && not(List.exists (fun (n : Node) -> n.pos = x) visitedNodes)) edges
+                let neighbours = List.filter (fun x -> not(List.contains x visitedNodes)) edges.[min.pos]
                 let heap = updateNeighbours min neighbours Q fibNodes heuristic
-                searchForPath edges target heap fibNodes (min::visitedNodes) heuristic
-
-
-    let rec constructHeap (source : Position) (nodes : Node list) (heap : FibonacciHeap<Node>) (entryMap : Map<Position, FibonacciHeapNode<Node>>) : (FibonacciHeap<Node> * Map<Position, FibonacciHeapNode<Node>>) =
-        match nodes with 
-        | car::cdr when car.pos = source -> 
-            let node = new FibonacciHeapNode<Node>(car, 0.0)
-            let map = entryMap.Add(car.pos, node)
-            heap.Insert(node, 0.0)
-            constructHeap source cdr heap map 
-        | car::cdr ->
-            let node = new FibonacciHeapNode<Node>(car, infinity)
-            let map = entryMap.Add(car.pos, node)
-            heap.Insert(node, infinity)
-            constructHeap source cdr heap map 
-        | [] -> (heap, entryMap)
+                searchForPath edges target heap fibNodes (min.pos::visitedNodes) heuristic
 
     let dijkstraHeuristic (x : Position) (y : Position) = 1.0
 
-    let search (graph : Graph) (source : Position) (target : Position) : Position list =
+    let search (graph : Graph) (source : Position) (target : Position) (constructHeap : Position -> Node list -> FibonacciHeap<Node> -> Map<Position, FibonacciHeapNode<Node>> -> FibonacciHeap<Node> * Map<Position, FibonacciHeapNode<Node>>) : Position list =
         let heap, map = constructHeap source graph.nodes (new FibonacciHeap<Node>()) Map.empty
         searchForPath graph.edges target heap map [] dijkstraHeuristic
