@@ -6,9 +6,9 @@ open System
 
 [<EntryPoint>]
 let main argv = 
-    let file = "C:\Users\Marcus\SkyDrive\Dokumenter\\test.txt"
+    let file = "C:\Users\Marcus\OneDrive\Dokumenter\\test.txt"
     let graph = Graphing.constructGraphFromFile file
-    let path = Dijkstra.search graph.edges (1,1) (39,5)
+    let path = Dijkstra.search graph (1,1) (39,5)
     printfn "%A" path
     Console.ReadLine() |> ignore
 

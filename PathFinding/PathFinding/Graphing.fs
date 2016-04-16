@@ -11,7 +11,7 @@ module Graphing =
         | hd::tl ->
             let newRes =
                 match hd with
-                | ' ' -> { pos = (x,y); prev = None; dist = infinity }::res
+                | ' ' -> { pos = (x,y); prev = None }::res
                 | _ -> res
             lineToNodes (x+1) y tl newRes
 
@@ -36,7 +36,7 @@ module Graphing =
                         |> List.fold (fun state x -> state@x) []
         tempNodes
         |> List.map (fun x -> 
-                         { pos = x.pos; prev = None; dist = infinity })
+                         { pos = x.pos; prev = None })
 
     let constructNodesFromFile (path : string) : Node list =
         readAllLines path

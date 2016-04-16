@@ -22,3 +22,4 @@ C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Deb
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.fsprojResolveAssemblyReference.cache
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.exe
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.pdb
+C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\FibonacciHeap.dll

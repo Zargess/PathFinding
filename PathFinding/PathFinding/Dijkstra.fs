@@ -14,27 +14,22 @@ module Dijkstra =
         let allNeighbours = List.filter (fun (x,y) -> x = n.pos) edges
         List.filter (fun n -> List.exists (fun (x,y) -> y = n.pos) allNeighbours) nodes
 
-    //let updateNeighbour (node : Node) (neighbour : Node) (heuristic : Position -> Position -> float)
+    let rec updateNeighbours (n : Node) (neighbours : Edge list) (heap : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (heuristic : Position -> Position -> float) : FibonacciHeap<Node> =
+        match neighbours with
+        | [] -> heap
+        | (x, y)::cdr ->
+            let node = fibNodes.[n.pos]
+            let neighbour = fibNodes.[y]
+            let alt = node.Key + (heuristic n.pos y)
+            if alt < neighbour.Key
+            then
+                neighbour.Data <- {neighbour.Data with prev = Some(n)} 
+                heap.DecreaseKey(neighbour, alt)
+                updateNeighbours n cdr heap fibNodes heuristic
+            else
+                updateNeighbours n cdr heap fibNodes heuristic
 
-//    let updateNeighbour (node : Node) (neighbour : Node) : Node =
-//        let alt = node.dist + 1.0
-//        match neighbour with
-//        | x when alt < x.dist -> { x with prev = Some(node); dist = alt }
-//        | _ -> neighbour
-//
-//    let rec findShortestPathToTarget (graph : Graph) (target : Position) (Q : Node list) : Position list =
-//        match Q with
-//        | [] -> failwith "No path found to target"
-//        | hd::tl ->
-//            match hd with
-//            | x when x.pos = target -> getPath x
-//            | _ ->
-//                let neighbours = getRemainingNeighbours graph hd tl
-//                let rest = List.filter (fun x -> not(List.contains x neighbours) && x <> hd) Q
-//                let Q' = (List.map (updateNeighbour hd) neighbours)@rest
-//                findShortestPathToTarget graph target Q'
-
-    let rec searchForPath (edges : Edge list) (target : Position) (Q : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (visitedNodes : Node list) : Position list = 
+    let rec searchForPath (edges : Edge list) (target : Position) (Q : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (visitedNodes : Node list) (heuristic : Position -> Position -> float) : Position list = 
         if Q.IsEmpty()
         then getPath (List.find (fun x -> x.pos = target) visitedNodes)
         else
@@ -44,7 +39,8 @@ module Dijkstra =
             | _ ->
                 let neighbours =
                     List.filter (fun (x,y) -> x = min.pos && not(List.exists (fun (n : Node) -> n.pos = x) visitedNodes)) edges
-                []
+                let heap = updateNeighbours min neighbours Q fibNodes heuristic
+                searchForPath edges target heap fibNodes (min::visitedNodes) heuristic
 
 
     let rec constructHeap (source : Position) (nodes : Node list) (heap : FibonacciHeap<Node>) (entryMap : Map<Position, FibonacciHeapNode<Node>>) : (FibonacciHeap<Node> * Map<Position, FibonacciHeapNode<Node>>) =
@@ -61,10 +57,8 @@ module Dijkstra =
             constructHeap source cdr heap map 
         | [] -> (heap, entryMap)
 
+    let dijkstraHeuristic (x : Position) (y : Position) = 1.0
+
     let search (graph : Graph) (source : Position) (target : Position) : Position list =
-//        let nodes = { pos= source; prev = None; dist = 0.0 }::(List.filter (fun (x : Node) -> x.pos <> source) graph.nodes)
-//        findShortestPathToTarget graph target nodes
         let heap, map = constructHeap source graph.nodes (new FibonacciHeap<Node>()) Map.empty
-//        let n = new FibonacciHeapNode<Node>({pos = source; prev = None; dist = 0.0}, 0.0);
-//        n.Data <- {n.Data with dist = 1.0}
-        []
+        searchForPath graph.edges target heap map [] dijkstraHeuristic
