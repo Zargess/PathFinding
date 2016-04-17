@@ -1,5 +1,7 @@
 ﻿namespace Shipping
 
-type Harbor = { id : int; maxShips : int; fee : int }
-type Container = { id : int; destination : int; cargoType : int; }
-type Route = { harbors : (int * int ); cost : int; }
+open PathFinding
+
+type Harbor = { id : int; maxShips : int; fee : int; pos : Position; }
+type Container = { id : int; dest : int; cargoType : int; }
+type Route = { from : int; dest : int; cost : int; }
