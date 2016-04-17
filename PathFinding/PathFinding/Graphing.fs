@@ -63,4 +63,3 @@ module Graphing =
         let nodes = constructNodesFromFile path
         let initialNode = List.head nodes
         constructGraph adjacent initialNode nodes [] [] Map.empty
-        
