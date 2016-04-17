@@ -7,7 +7,7 @@ module Graphing =
         let rec helper (y : Node) (pathSoFar : Position list) : Position list =
             match y.prev with
             | Some(z) -> helper z (y.pos::pathSoFar)
-            | None -> pathSoFar
+            | None -> y.pos::pathSoFar
         helper x []
     
     let readAllLines (path : string) = File.ReadAllLines(path) |> List.ofArray    

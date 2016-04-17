@@ -33,12 +33,19 @@ let rec constructHeap (source : Position) (nodes : Node list) (heap : FibonacciH
         constructHeap source cdr heap map 
     | [] -> (heap, entryMap)
 
+let cost (x : Position) (y : Position) = 1.0
+
+let manhattan (x1, y1) (x2, y2) = abs(x1 - x2) + abs(y1 - y2) |> float
+
 [<EntryPoint>]
 let main argv = 
     let file = "C:\Users\Marcus\OneDrive\Dokumenter\\test.txt"
     let graph = Graphing.constructGraphFromFile file adjacent
     let path = Dijkstra.search graph (1,1) (39,5) constructHeap
+    let path' = AStar.search graph (1,1) (39,5) manhattan cost
     printfn "%A" path
+    printfn "%A" path'
+    printfn "%A" (path = path')
     Console.ReadLine() |> ignore
 
     0 // return an integer exit code
