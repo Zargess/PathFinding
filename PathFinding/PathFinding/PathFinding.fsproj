@@ -52,6 +52,7 @@
     <Compile Include="Graphing.fs" />
     <Compile Include="Dijkstra.fsi" />
     <Compile Include="Dijkstra.fs" />
+    <Compile Include="AStar.fsi" />
     <Compile Include="AStar.fs" />
   </ItemGroup>
   <PropertyGroup>

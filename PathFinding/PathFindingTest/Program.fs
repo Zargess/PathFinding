@@ -5,8 +5,6 @@ open PathFinding
 open System
 open FibonacciHeap
 
-
-
 let adjacent (source : Node) (target : Node) =
     let x,y = source.pos
     let tx,ty = target.pos
@@ -15,9 +13,6 @@ let adjacent (source : Node) (target : Node) =
     let east  = x = (tx - 1) && y = ty
     let west  = x = (tx + 1) && y = ty
     north || south || east || west
-
-
-
 
 let rec constructHeap (source : Position) (nodes : Node list) (heap : FibonacciHeap<Node>) (entryMap : Map<Position, FibonacciHeapNode<Node>>) : (FibonacciHeap<Node> * Map<Position, FibonacciHeapNode<Node>>) =
     match nodes with 
@@ -47,5 +42,4 @@ let main argv =
     printfn "%A" path'
     printfn "%A" (path = path')
     Console.ReadLine() |> ignore
-
     0 // return an integer exit code
