@@ -1,0 +1,3 @@
+Shipping A* heuristic:
+sum from i to n(x_i * cost(harbor_i))
+hvor x_i = 1 hvis harbor i mangler at få placeret kasser
