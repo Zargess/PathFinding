@@ -2,6 +2,9 @@
 // See the 'F# Tutorial' project for more help.
 open Shipping
 open PathFinding
+open System
+
+let random = new Random()
 
 let getPositionThatIsNotHarbor (harbor : Harbor) (route : Route) : Position =
     if harbor.pos = (route.from, route.from)
