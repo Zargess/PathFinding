@@ -27,6 +27,7 @@ module Dijkstra =
                 let heap = updateNeighbours min neighbours Q fibNodes heuristic
                 searchForPath edges target heap fibNodes (min.pos::visitedNodes) heuristic
 
+    // TODO : Get function, that takes two positions and returns a float instead of this hard coding
     let dijkstraHeuristic (x : Position) (y : Position) = 1.0
 
     let search (graph : Graph) (source : Position) (target : Position) (constructHeap : Position -> Node list -> FibonacciHeap<Node> -> Map<Position, FibonacciHeapNode<Node>> -> FibonacciHeap<Node> * Map<Position, FibonacciHeapNode<Node>>) : Position list =
