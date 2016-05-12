@@ -51,7 +51,7 @@ module Graphing =
         | [] ->
             let currentVisitingNotInVertices = List.filter (fun (p : Node) -> not(List.contains p.pos newVertices)) currentVisiting
             match currentVisitingNotInVertices with
-            | [] -> { vertices = newVertices; edges = newEdges; nodes = nodes }
+            | [] -> { vertices = newVertices; edges = newEdges }
             | head::tail -> constructGraph adjacent head nodes (currentVisiting@tail) newVertices newEdges
 
     let constructGraphFromMap (map : string list) (adjacent : Node -> Node -> bool) : Graph =

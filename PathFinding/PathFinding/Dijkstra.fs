@@ -31,5 +31,6 @@ module Dijkstra =
     let dijkstraHeuristic (x : Position) (y : Position) = 1.0
 
     let search (graph : Graph) (source : Position) (target : Position) (constructHeap : Position -> Node list -> FibonacciHeap<Node> -> Map<Position, FibonacciHeapNode<Node>> -> FibonacciHeap<Node> * Map<Position, FibonacciHeapNode<Node>>) : Position list =
-        let heap, map = constructHeap source graph.nodes (new FibonacciHeap<Node>()) Map.empty
+        let nodes = List.map (fun x -> { pos = x; prev = None; cost = 1.0 }) graph.vertices;
+        let heap, map = constructHeap source nodes (new FibonacciHeap<Node>()) Map.empty
         searchForPath graph.edges target heap map [] dijkstraHeuristic

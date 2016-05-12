@@ -3,6 +3,7 @@
 open Shipping
 open PathFinding
 open System
+open DataCreator
 
 let random = new Random()
 
@@ -13,7 +14,7 @@ let getPositionThatIsNotHarbor (harbor : Harbor) (route : Route) : Position =
 
 let rec constructGraph (calcFee : Position -> float) (routes : Route list) (harbors : Harbor list) (vertices : Position list) (edges : Map<Position, Position list>) : Graph =
     match harbors with
-    | [] -> { nodes = List.map (fun x -> { pos = x; prev = None; cost = calcFee x }) vertices; vertices = vertices; edges = edges }
+    | [] -> { vertices = vertices; edges = edges }
     | harbor::cdr ->
         let children : Position list = 
             List.filter (fun x -> x.dest = harbor.id || x.from = harbor.id) routes
@@ -44,6 +45,17 @@ let heuristic (harbors : Harbor list) (containers : Container list) x y : float 
     List.fold (fun soFar (h : Harbor) -> if isHarborDone h containers then soFar else soFar + h.fee) 0.0 harbors
 
 [<EntryPoint>]
-let main argv = 
-    printfn "%A" argv
+let main argv =
+    printfn "%A" "Please enter the path to the game xml file:"
+    let path = System.Console.ReadLine()
+    let doc = createXmlDocument path
+    let harbors = createHarbors doc
+    let containers = createContainers doc harbors
+    let routes = createRoutes doc
+    let ships = createShips doc
+
+    let graph = constructGraph (calculateFee harbors) routes harbors [] Map.empty
+
+    printfn "%A" graph
+    System.Console.ReadLine()
     0 // return an integer exit code
