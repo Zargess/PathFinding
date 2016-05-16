@@ -44,18 +44,26 @@ let cost (harbors : Harbor list) (routes : Route list) (from : Position) (dest :
 let heuristic (harbors : Harbor list) (containers : Container list) x y : float =
     List.fold (fun soFar (h : Harbor) -> if isHarborDone h containers then soFar else soFar + h.fee) 0.0 harbors
 
+let findPathFromContainerToGoal (graph : Graph) heuristic cost (container : Container) =
+    (container, AStar.search graph container.pos (container.dest, container.dest) heuristic cost)
+
 [<EntryPoint>]
 let main argv =
-    printfn "%A" "Please enter the path to the game xml file:"
+    printfn "%O" "Please enter the path to the game xml file:"
     let path = System.Console.ReadLine()
     let doc = createXmlDocument path
+
     let harbors = createHarbors doc
     let containers = createContainers doc harbors
     let routes = createRoutes doc
     let ships = createShips doc
 
     let graph = constructGraph (calculateFee harbors) routes harbors [] Map.empty
+    let costFunction = cost harbors routes
+    let heuristicFunction = heuristic harbors containers
+    
+    let containerPathPairs = List.map (fun c -> findPathFromContainerToGoal graph heuristicFunction costFunction c) containers
 
     printfn "%A" graph
-    System.Console.ReadLine()
+    System.Console.ReadLine() |> ignore
     0 // return an integer exit code
