@@ -13,6 +13,7 @@ module DataCreator =
         |> Seq.cast<XmlNode>
         |> List.ofSeq
 
+    // TODO : Create containers in this harbor!
     let createHarborFromXmlNode (node : XmlNode) =
         let id = int node.["harborId"].InnerText
         let maxNumberOfShips = int node.["maxNumberOfShips"].InnerText

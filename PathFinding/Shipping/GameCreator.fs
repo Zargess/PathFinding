@@ -62,14 +62,19 @@ module GameCreator =
     // TODO : only need to save routes and ships now
     let save (id : int) (harborlist : Harbor list) (containerlist : Container list) (shiplist : Ship list) (routelist : Route list) = 
         let doc = new XmlDocument()
+
         let gameNode = doc.CreateElement("Game")
         doc.AppendChild(gameNode) |> ignore
+
         let gameId = doc.CreateElement("gameId")
         gameId.InnerText <- string(id)
         gameNode.AppendChild(gameId) |> ignore
+
         let harborNodes = doc.CreateElement("harborList")
         gameNode.AppendChild(harborNodes) |> ignore
 
-        let harborlistNodes = saveHarbors doc harborlist containerlist []
+        let harborlistNodes = List.rev (saveHarbors doc harborlist containerlist [])
         for harbor in harborlistNodes do harborNodes.AppendChild(harbor) |> ignore
+
+        doc.Save("C:\Users\Marcus\Desktop\\test.xml")
         []
