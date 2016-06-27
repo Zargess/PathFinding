@@ -58,6 +58,10 @@ let main argv =
     let routes = createRoutes doc
     let ships = createShips doc
 
+    // TODO : Remove and only use when a game has been created
+    // TODO : Make a commandline walkthrough to create a game and descripe the game so far
+    GameCreator.save 1 harbors containers ships routes |> ignore
+
     let graph = constructGraph (calculateFee harbors) routes harbors [] Map.empty
     let costFunction = cost harbors routes
     let heuristicFunction = heuristic harbors containers

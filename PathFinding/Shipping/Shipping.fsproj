@@ -52,6 +52,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Types.fs" />
     <Compile Include="DataCreator.fs" />
+    <Compile Include="GameCreator.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
   </ItemGroup>
