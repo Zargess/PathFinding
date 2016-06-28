@@ -13,31 +13,35 @@ module DataCreator =
         |> Seq.cast<XmlNode>
         |> List.ofSeq
 
-    // TODO : Create containers in this harbor!
-    let createHarborFromXmlNode (node : XmlNode) =
-        let id = int node.["harborId"].InnerText
-        let maxNumberOfShips = int node.["maxNumberOfShips"].InnerText
-        let harborFee = float node.["harborFee"].InnerText
-        { id = id; maxShips = maxNumberOfShips; fee = harborFee; pos = (id, id)}
+    let getNodesFromNode (node : XmlNode) (path : string) =
+        node.SelectNodes path
+        |> Seq.cast<XmlNode>
+        |> List.ofSeq
 
-    let createHarbors (doc : XmlDocument) : Harbor list =
-        getNodes doc "/Game/harborList/Harbor"
-        |> List.map createHarborFromXmlNode
-
-    let getHarborPositionById (id : int) (harbors : Harbor list) =
-        let harbor = List.find (fun (x : Harbor) -> x.id = id) harbors
-        harbor.pos
-
-    let createContainerFromXmlNode (harbors : Harbor list) (node : XmlNode) =
+    let createContainerFromXmlNode (harbor : Harbor) (node : XmlNode) =
         let id = int node.["containerId"].InnerText
         let dest = int node.["toHarborId"].InnerText
-        let pos = getHarborPositionById dest harbors
+        let pos = harbor.pos
         let cargo = int node.["type"].InnerText
         { id = id; pos = pos; dest = dest; cargoType = cargo}
 
-    let createContainers (doc : XmlDocument) (harbors : Harbor list) : Container list = 
-        getNodes doc "/Game/harborList/Harbor/containerList/Container"
-        |> List.map (createContainerFromXmlNode harbors)
+    // TODO : Create containers in this harbor!
+    let createHarborAndContainersFromXmlNode (node : XmlNode) : Harbor * Container list =
+        let id = int node.["harborId"].InnerText
+        let maxNumberOfShips = int node.["maxNumberOfShips"].InnerText
+        let harborFee = float node.["harborFee"].InnerText
+        let containerNodes = getNodesFromNode node "descendant::Container"
+        let harbor = { id = id; maxShips = maxNumberOfShips; fee = harborFee; pos = (id, id)}
+        let containers = List.map (createContainerFromXmlNode harbor) containerNodes
+        (harbor, containers)
+
+    let createHarborsAndContainers (doc : XmlDocument) : Harbor list * Container list =
+        let (harbors, containerLists) = 
+            getNodes doc "/Game/harborList/Harbor"
+            |> List.map createHarborAndContainersFromXmlNode
+            |> List.unzip
+        let containers = List.fold (fun res c -> c@res) [] containerLists
+        (harbors, containers)
 
     let createRouteFromXmlNode (node : XmlNode) =
         let from = int node.["fromHarborId"].InnerText

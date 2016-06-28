@@ -59,8 +59,56 @@ module GameCreator =
             let node = saveHarbor doc hd containers
             saveHarbors doc tl containers (node::reslist)
 
-    // TODO : only need to save routes and ships now
-    let save (id : int) (harborlist : Harbor list) (containerlist : Container list) (shiplist : Ship list) (routelist : Route list) = 
+    let saveShip (doc : XmlDocument) (ship : Ship) =
+        let shipNode = doc.CreateElement("Ship")
+
+        let id = doc.CreateElement("shipId")
+        id.InnerText <- string ship.id
+        shipNode.AppendChild(id) |> ignore
+
+        let max = doc.CreateElement("MaxContainerCapacity")
+        max.InnerText <- string ship.capacity
+        shipNode.AppendChild(max) |> ignore
+
+        let (id,_) = ship.pos
+        let pos = doc.CreateElement("currentHarborId")
+        pos.InnerText <- string id
+        shipNode.AppendChild(pos) |> ignore
+
+        shipNode
+
+    let rec saveShips (doc : XmlDocument) (ships : Ship list) (reslist : XmlElement list) =
+        match ships with
+        | [] -> reslist
+        | hd::tl ->
+            let node = saveShip doc hd
+            saveShips doc tl (node::reslist)
+
+    let saveRoute (doc : XmlDocument) (route : Route) =
+        let routeNode = doc.CreateElement("Route")
+
+        let from = doc.CreateElement("fromHarborId")
+        from.InnerText <- string route.from
+        routeNode.AppendChild(from) |> ignore
+
+        let dest = doc.CreateElement("toHarborId")
+        dest.InnerText <- string route.dest
+        routeNode.AppendChild(dest) |> ignore
+        
+        let cost = doc.CreateElement("cost")
+        cost.InnerText <- string route.cost
+        routeNode.AppendChild(cost) |> ignore
+        
+        routeNode
+
+    let rec saveRoutes (doc : XmlDocument) (routes : Route list) (reslist : XmlElement list) =
+        match routes with
+        | [] -> reslist
+        | hd::tl ->
+            let node = saveRoute doc hd
+            saveRoutes doc tl (node::reslist)
+
+    let save (path : string) (id : int) (harborlist : Harbor list) (containerlist : Container list) (shiplist : Ship list) (routelist : Route list) = 
         let doc = new XmlDocument()
 
         let gameNode = doc.CreateElement("Game")
@@ -76,5 +124,15 @@ module GameCreator =
         let harborlistNodes = List.rev (saveHarbors doc harborlist containerlist [])
         for harbor in harborlistNodes do harborNodes.AppendChild(harbor) |> ignore
 
-        doc.Save("C:\Users\Marcus\Desktop\\test.xml")
-        []
+        let shiplistNode = doc.CreateElement("shipList")
+        gameNode.AppendChild(shiplistNode) |> ignore
+        let shiplistNodes = List.rev (saveShips doc shiplist [])
+        for ship in shiplistNodes do shiplistNode.AppendChild(ship) |> ignore
+
+        let routelistNode = doc.CreateElement("routeList")
+        gameNode.AppendChild(routelistNode) |> ignore
+        let routelistNodes = List.rev (saveRoutes doc routelist [])
+        for route in routelistNodes do routelistNode.AppendChild(route) |> ignore
+
+
+        doc.Save(path)
