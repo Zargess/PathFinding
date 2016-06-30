@@ -1,0 +1,7 @@
+let hazzard = containers of hazzard type
+let other = containers of other type
+
+let containers =
+	let maxHazzard = max number and which hazzard containers with the minimum cost on route
+	let maxOther = max number and which other containers with the minimum cost on route
+	
