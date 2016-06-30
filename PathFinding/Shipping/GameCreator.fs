@@ -134,5 +134,4 @@ module GameCreator =
         let routelistNodes = List.rev (saveRoutes doc routelist [])
         for route in routelistNodes do routelistNode.AppendChild(route) |> ignore
 
-
         doc.Save(path)

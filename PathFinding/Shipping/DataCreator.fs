@@ -25,7 +25,6 @@ module DataCreator =
         let cargo = int node.["type"].InnerText
         { id = id; pos = pos; dest = dest; cargoType = cargo}
 
-    // TODO : Create containers in this harbor!
     let createHarborAndContainersFromXmlNode (node : XmlNode) : Harbor * Container list =
         let id = int node.["harborId"].InnerText
         let maxNumberOfShips = int node.["maxNumberOfShips"].InnerText

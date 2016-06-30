@@ -12,7 +12,7 @@ let getPositionThatIsNotHarbor (harbor : Harbor) (route : Route) : Position =
     then (route.dest, route.dest)
     else (route.from, route.from)
 
-let rec constructGraph (calcFee : Position -> float) (routes : Route list) (harbors : Harbor list) (vertices : Position list) (edges : Map<Position, Position list>) : Graph =
+let rec constructGraph (routes : Route list) (harbors : Harbor list) (vertices : Position list) (edges : Map<Position, Position list>) : Graph =
     match harbors with
     | [] -> { vertices = vertices; edges = edges }
     | harbor::cdr ->
@@ -21,7 +21,7 @@ let rec constructGraph (calcFee : Position -> float) (routes : Route list) (harb
             |> List.map (getPositionThatIsNotHarbor harbor)
         let newEdges = edges.Add(harbor.pos, children)
         let newVertices = harbor.pos::vertices
-        constructGraph calcFee routes cdr newVertices newEdges
+        constructGraph routes cdr newVertices newEdges
 
 let calculateFee (harbors : Harbor list) (pos : Position) =
     let harbor = List.find (fun (x : Harbor) -> x.pos = pos) harbors
@@ -61,11 +61,13 @@ let main argv =
     // TODO : Make a commandline walkthrough to create a game and descripe the game so far
     GameCreator.save "C:\Users\Marcus\desktop\\test.xml" 1 harbors containers ships routes |> ignore
 
-    let graph = constructGraph (calculateFee harbors) routes harbors [] Map.empty
+    let graph = constructGraph routes harbors [] Map.empty
     let costFunction = cost harbors routes
     let heuristicFunction = heuristic harbors containers
     
     let containerPathPairs = List.map (fun c -> findPathFromContainerToGoal graph heuristicFunction costFunction c) containers
+
+    printfn "%A" containerPathPairs
 
     printfn "%A" graph
     System.Console.ReadLine() |> ignore
