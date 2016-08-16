@@ -67,6 +67,8 @@ let main argv =
     
     let containerPathPairs = List.map (fun c -> findPathFromContainerToGoal graph heuristicFunction costFunction c) containers
 
+    
+
     printfn "%A" containerPathPairs
 
     printfn "%A" graph

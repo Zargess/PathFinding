@@ -13,3 +13,4 @@ C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\F
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\FSharp.Core.xml
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.dll
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.pdb
+c:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.fsprojResolveAssemblyReference.cache
