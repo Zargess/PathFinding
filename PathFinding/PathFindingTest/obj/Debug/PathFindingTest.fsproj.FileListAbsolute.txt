@@ -23,3 +23,15 @@ C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Deb
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.exe
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.pdb
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFindingTest\bin\Debug\FibonacciHeap.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.exe.config
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.XML
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.exe
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFindingTest.pdb
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\FibonacciHeap.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\FSharp.Core.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFinding.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFinding.pdb
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\FSharp.Core.xml
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.fsprojResolveAssemblyReference.cache
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.exe
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.pdb

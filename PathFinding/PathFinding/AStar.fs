@@ -10,7 +10,7 @@ module AStar =
             let child = { pos=car; prev=Some(node); cost=node.cost + (cost node.pos car) }
             let childNode = new FibonacciHeapNode<Node>(child, child.cost + (heuristic car goal))
             let newOpenEntryMap = openEntryMap.Add(car, childNode)
-            openSet.Insert(childNode, child.cost + (heuristic car goal))
+            openSet.Insert(childNode)
             createChildNodes node cdr goal openSet newOpenEntryMap heuristic cost
 
 
@@ -31,6 +31,6 @@ module AStar =
         let key = heuristic start goal
         let startNode = new FibonacciHeapNode<Node>({ pos=start; prev=None; cost=0.0; }, key)
         let openSet = new FibonacciHeap<Node>()
-        openSet.Insert(startNode, key)
+        openSet.Insert(startNode)
         let openEntryMap = Map.empty.Add(start, startNode)
         findAStarPath graph.edges goal openSet [] openEntryMap heuristic cost

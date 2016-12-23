@@ -14,3 +14,11 @@ C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\bin\Debug\F
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.dll
 C:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.pdb
 c:\Users\Marcus\Documents\GitHub\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.fsprojResolveAssemblyReference.cache
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\bin\Debug\PathFinding.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\bin\Debug\PathFinding.pdb
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\bin\Debug\FibonacciHeap.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\bin\Debug\FSharp.Core.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\bin\Debug\FSharp.Core.xml
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.fsprojResolveAssemblyReference.cache
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.dll
+c:\Users\costa\github\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.pdb

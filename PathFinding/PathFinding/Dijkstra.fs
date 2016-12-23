@@ -12,8 +12,9 @@ module Dijkstra =
             let alt = node.Key + (heuristic n.pos car)
             if alt < neighbour.Key
             then
-                neighbour.Data <- {neighbour.Data with prev = Some(n)} 
-                heap.DecreaseKey(neighbour, alt)
+                heap.Delete(neighbour)
+                let newNeighbour = new FibonacciHeapNode<Node>({neighbour.Data with prev = Some(n)}, alt)
+                heap.Insert(newNeighbour)
             updateNeighbours n cdr heap fibNodes heuristic
 
     let rec searchForPath (edges : Map<Position, Position list>) (target : Position) (Q : FibonacciHeap<Node>) (fibNodes : Map<Position, FibonacciHeapNode<Node>>) (visitedNodes : Position list) (heuristic : Position -> Position -> float) : Position list = 
