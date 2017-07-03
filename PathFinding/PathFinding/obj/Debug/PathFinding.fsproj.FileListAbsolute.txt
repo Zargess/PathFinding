@@ -22,3 +22,4 @@ c:\Users\costa\github\PathFinding\PathFinding\PathFinding\bin\Debug\FSharp.Core.
 c:\Users\costa\github\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.fsprojResolveAssemblyReference.cache
 c:\Users\costa\github\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.dll
 c:\Users\costa\github\PathFinding\PathFinding\PathFinding\obj\Debug\PathFinding.pdb
+C:\Users\costa\github\PathFinding\PathFinding\PathFinding\bin\Debug\PathFinding.XML

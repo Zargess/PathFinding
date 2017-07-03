@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../PathFinding" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../PathFindingTest" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Shipping" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../PathFinding/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../PathFinding/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../PathFindingTest/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../PathFindingTest/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Shipping/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Shipping/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

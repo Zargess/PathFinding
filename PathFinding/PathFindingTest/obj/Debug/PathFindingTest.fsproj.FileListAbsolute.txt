@@ -35,3 +35,4 @@ c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\FSharp.C
 c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.fsprojResolveAssemblyReference.cache
 c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.exe
 c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\obj\Debug\PathFindingTest.pdb
+c:\Users\costa\github\PathFinding\PathFinding\PathFindingTest\bin\Debug\PathFinding.xml
